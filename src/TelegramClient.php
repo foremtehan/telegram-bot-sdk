@@ -13,9 +13,6 @@ use Telegram\Bot\HttpClients\HttpClientInterface;
  */
 class TelegramClient
 {
-    /** @var string Telegram Bot API URL. */
-    const BASE_BOT_URL = 'https://api.telegram.org/bot';
-
     /** @var HttpClientInterface|null HTTP Client. */
     protected $httpClientHandler;
 
@@ -97,7 +94,7 @@ class TelegramClient
      */
     public function prepareRequest(TelegramRequest $request): array
     {
-        $url = $this->getBaseBotUrl().$request->getAccessToken().'/'.$request->getEndpoint();
+        $url = $this->getBaseBotUrl() . $request->getAccessToken() . '/' . $request->getEndpoint();
 
         return [
             $url,
@@ -114,7 +111,7 @@ class TelegramClient
      */
     public function getBaseBotUrl(): string
     {
-        return static::BASE_BOT_URL;
+        return config('telegram.base_url');
     }
 
     /**
@@ -132,7 +129,7 @@ class TelegramClient
 
     /**
      * @param TelegramRequest $request
-     * @param $method
+     * @param string $method
      *
      * @return array
      */
