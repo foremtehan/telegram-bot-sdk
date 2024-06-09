@@ -106,10 +106,6 @@ class GuzzleHttpClient implements HttpClientInterface
                 throw new TelegramUserDeactivatedException($e->getMessage());
             }
 
-            array_push($options, $url);
-
-            Cache::store('file')->put('telegram.sdk.catch', $options);
-
             if (! $response instanceof ResponseInterface) {
                 throw new TelegramSDKException($e->getMessage(), $e->getCode());
             }
