@@ -63,8 +63,7 @@ trait Http
 
     public function setBaseBotUrl(string $baseBotUrl): self
     {
-        $baseBotUrl = str_replace('/bot', '', $baseBotUrl);
-        $this->baseBotUrl = rtrim($baseBotUrl, '/');
+        $this->baseBotUrl = $baseBotUrl;
 
         return $this;
     }
