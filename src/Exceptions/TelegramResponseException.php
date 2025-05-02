@@ -7,16 +7,15 @@ use Telegram\Bot\TelegramResponse;
 /**
  * Class TelegramResponseException.
  */
-final class TelegramResponseException extends TelegramSDKException
+class TelegramResponseException extends TelegramSDKException
 {
     /** @var array Decoded response. */
     private array $responseData = [];
 
     /**
      * Creates a TelegramResponseException.
-     *
-     * @param  TelegramResponse  $response  The response that threw the exception.
-     * @param  TelegramSDKException|null  $previousException  The more detailed exception.
+     * @param TelegramResponse $response The response that threw the exception.
+     * @param TelegramSDKException|null $previousException The more detailed exception.
      */
     public function __construct(private TelegramResponse $response, ?TelegramSDKException $previousException = null)
     {
@@ -30,8 +29,7 @@ final class TelegramResponseException extends TelegramSDKException
 
     /**
      * Checks isset and returns that or a default value.
-     *
-     * @param  string  $key
+     * @param string $key
      * @return mixed
      */
     public function get($key, mixed $default = null)
@@ -41,8 +39,7 @@ final class TelegramResponseException extends TelegramSDKException
 
     /**
      * A factory for creating the appropriate exception based on the response from Telegram.
-     *
-     * @param  TelegramResponse  $response  The response that threw the exception.
+     * @param TelegramResponse $response The response that threw the exception.
      */
     public static function create(TelegramResponse $response)
     {
@@ -83,6 +80,7 @@ final class TelegramResponseException extends TelegramSDKException
             $has('PARTICIPANT_ID_INVALID') => ParticipantInvalidException::class,
             $has('PEER_ID_INVALID') => PeerInvalidException::class,
             $has('member not found') => MemberNotFoundException::class,
+            $has("can't be edited") => MessageCantBeEditedException::class,
             $has('CHANNEL_FORUM_MISSING') || $has('not a forum') => ForumMissingException::class,
             $has('not enough rights') || $has('member list is inaccessible') || $has('rights in the') => NotEnoughRightsException::class,
             $message == 'Unauthorized' || $has('SESSION_REVOKED') || $has('USER_DEACTIVATED') => UnauthorizedException::class,
