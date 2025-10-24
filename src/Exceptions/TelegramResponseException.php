@@ -83,6 +83,7 @@ class TelegramResponseException extends TelegramSDKException
             $has('PARTICIPANT_ID_INVALID') => ParticipantInvalidException::class,
             $has('PEER_ID_INVALID') => PeerInvalidException::class,
             $has('member not found') => MemberNotFoundException::class,
+            $has("can't parse entities") => CantParseEntitiesException::class,
             $has("can't be edited") => MessageCantBeEditedException::class,
             $has('CHANNEL_FORUM_MISSING') || $has('not a forum') => ForumMissingException::class,
             $has('not enough rights') || $has('member list is inaccessible') || $has('rights in the') => NotEnoughRightsException::class,
