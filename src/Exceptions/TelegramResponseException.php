@@ -14,9 +14,8 @@ class TelegramResponseException extends TelegramSDKException
 
     /**
      * Creates a TelegramResponseException.
-     *
-     * @param  TelegramResponse  $response  The response that threw the exception.
-     * @param  TelegramSDKException|null  $previousException  The more detailed exception.
+     * @param TelegramResponse $response The response that threw the exception.
+     * @param TelegramSDKException|null $previousException The more detailed exception.
      */
     public function __construct(private TelegramResponse $response, ?TelegramSDKException $previousException = null)
     {
@@ -30,8 +29,7 @@ class TelegramResponseException extends TelegramSDKException
 
     /**
      * Checks isset and returns that or a default value.
-     *
-     * @param  string  $key
+     * @param string $key
      * @return mixed
      */
     public function get($key, mixed $default = null)
@@ -41,8 +39,7 @@ class TelegramResponseException extends TelegramSDKException
 
     /**
      * A factory for creating the appropriate exception based on the response from Telegram.
-     *
-     * @param  TelegramResponse  $response  The response that threw the exception.
+     * @param TelegramResponse $response The response that threw the exception.
      */
     public static function create(TelegramResponse $response)
     {
@@ -60,7 +57,7 @@ class TelegramResponseException extends TelegramSDKException
             $has('message to edit not found') => MessageToEditNotFoundException::class,
             $has('blocked by the user') || $has('USER_IS_BLOCKED') => BotBlockedByUserException::class,
             $has('user is deactivated') => UserDeactivatedException::class,
-            $has('message is too long') || $has('caption is too long') || $has('_TOO_LONG') => TextTooLongException::class,
+            $has('message is too long') || $has('text is too long') || $has('caption is too long') || $has('_TOO_LONG') => TextTooLongException::class,
             $has('Too Many Requests') => TooManyRequestException::class,
             $has('user not found') => UserNotFoundException::class,
             $has('chat not found') || $has('PEER_ID_INVALID') => ChatNotFoundException::class,
